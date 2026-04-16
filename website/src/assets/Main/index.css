@@ -1,0 +1,16 @@
+body {
+    background-color: #070707;
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.headerbox {
+    display: inline-flex;
+    width: 130vh;
+    height: 50px;
+    background-color: rgb(74, 49, 94);
+    border-radius: 30px;
+    padding: 10px;
+}
