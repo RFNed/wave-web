@@ -12,7 +12,10 @@ export default function App() {
 
         <div className="content">
             <div className="content-head">
-                Wave
+                <h1 className='title'>Wave</h1>
+                <span className='desc'>Новая ритм игра - с уникальным геймплеем и красивой графикой!</span>
+                <div className="download">Windows x64</div>
+                <div className="totto" title="Mascot Totto"></div>
             </div>
         </div>
 
