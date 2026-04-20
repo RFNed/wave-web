@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from redis.asyncio import Redis
 from passlib.context import CryptContext
 from backend.dependecy import database
+import uuid
 router = APIRouter()
 
 class RegisterModel(BaseModel):
@@ -31,4 +32,11 @@ INSERT INTO `users`
 VALUES 
 (%s, %s, %s, CURRENT_TIMESTAMP, NULL, NULL, NULL, '0', '0', '0')
                                  """, (data.nickname, data.email, password_hashed))
+            
+            token = uuid.uuid4().hex
+            redis.setex(
+                f"verify:{token}",
+                60 * 15,
+                {str(cursor.lastrowid)}
+            )
     return {"message": "Проверьте свою почту"}

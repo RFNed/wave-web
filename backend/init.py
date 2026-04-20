@@ -1,7 +1,8 @@
 # backend/init.py
 from config import *
 import fastapi, bcrypt
-from backend.api.accounts.signin import router
+from backend.api.accounts import signin
+from backend.api.accounts import verify
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from redis.asyncio import Redis
@@ -28,4 +29,5 @@ app = fastapi.FastAPI(lifespan=lifespan)
 
 
 app.add_middleware(CORSMiddleware, allow_origins=REACT_URLS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
-app.include_router(router)
+app.include_router(signin.router)
+app.include_router(verify.router)

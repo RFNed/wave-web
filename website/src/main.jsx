@@ -6,6 +6,7 @@ import Maps from "./pages/Maps/Maps.jsx"
 import Auth from "./pages/Auth/Auth.jsx"
 import Records from "./pages/Records/Records.jsx"
 import Register from "./pages/Register/Register.jsx"
+import Verify from './pages/Verification/verify.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/records" element={<Records />} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/verify" element={<Verify />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
