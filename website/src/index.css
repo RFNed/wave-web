@@ -2,6 +2,12 @@
   font-family: Bauhaus;
   src: url(/assets/fonts/Bauhaus93Remastered-Regular.otf);
 }
+
+@font-face {
+  font-family: SSFBreakthrough;
+  src: url(/assets/fonts/SSFBreakthrough-Regular.ttf);
+}
+
 :root {
   --background-day: #f0f0f0;
   --background-night: #1e1e1e;
@@ -9,14 +15,16 @@
 
 body {
   min-height: 1400px;
+  align-items: center;
+  display: flex;
 }
 
 .right-board {
-  width: 500px;
-  margin-right: 30px;
-  display: flex;
+  width: 550px;
+  display: inline-flex;
+  flex-direction: row;
   margin-left: auto;
-  gap: 10px;
+  gap: 30px;
 }
 
 .buttons {
@@ -32,6 +40,14 @@ body {
     display: block;
     width: 45px;
   }
+
+  transition: all 500ms ease;
+
+  &:hover {
+    transition: all 500ms ease;
+    filter: drop-shadow(0px 0px 5px white)
+  }
+
 }
 
 .headerbox {
@@ -44,9 +60,8 @@ body {
     border-radius: 30px;
     padding: 10px;
     align-items: center;
-    
 
-    & img {
+    & .logo {
         z-index: 20;
         height: 100px;
         margin-left: 90px;

@@ -22,3 +22,4 @@ logs
 **/*.sln
 **/*.sw?
 config.py
+**/.env

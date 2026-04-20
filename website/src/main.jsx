@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import App from './pages/Main/Main.jsx'
+import { Routes, Route, BrowserRouter } from "react-router-dom"
+import App from "./pages/Main/Main.jsx"
 import Maps from "./pages/Maps/Maps.jsx"
 import Auth from "./pages/Auth/Auth.jsx"
-import Records from './pages/Records/Records.jsx';
+import Records from "./pages/Records/Records.jsx"
+import Register from "./pages/Register/Register.jsx"
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/maps" element={<Maps />}/>
         <Route path="/" element={<App />} />
         <Route path="/records" element={<Records />} />
+        <Route path="/register" element={<Register/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
