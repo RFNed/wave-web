@@ -73,13 +73,13 @@ body {
 }
 
 .totto {
-    grid-column: 9;
-    grid-row: 2 / 6;
+    grid-column: 6 / 11;
+    grid-row: 1 / 11;
     background-image: url("/assets/mascot/totto.png");
     background-size: contain;
     background-position: bottom right;
     background-repeat: no-repeat;
-    scale: 2.8;
+    scale: 1.05;
     z-index: 3; 
     filter: drop-shadow(0px 0px 5px rgb(243, 228, 228));
     position: relative;

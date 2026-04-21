@@ -1,8 +1,9 @@
 import "./register.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react"
 import { registerUser } from "../../api/register"
 export default function Register() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [nickname, setNickname] = useState("")
     const [password, setPassword] = useState("")
@@ -29,8 +30,7 @@ export default function Register() {
 
         try {
             const data = await registerUser(email, nickname, password)
-
-            setError(`${data.message}`)
+            navigate("/register/check")
             
         } catch (err)  {
             setError(err.message)

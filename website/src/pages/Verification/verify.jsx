@@ -1,6 +1,7 @@
 import "./verify.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { verifyJs } from "../../api/verify"
 export default function Verify() {
     const [loading, setLoading] = useState(true)
     const [message, setMessage] = useState("")
@@ -12,10 +13,20 @@ export default function Verify() {
                 if (token == null)
                 {
                     setLoading(false)
-                    setMessage("Недействительный токен")
+                    setMessage("Привет, это страница верификации!")
+                    return
                 }
 
-                
+                const result = await verifyJs(token)
+
+                if (result.status == 200)
+                {
+                    setLoading(false)
+                    setMessage("Можете закрыть эту страницу, и войти в аккаунт!")
+                } else {
+                    setLoading(false)
+                    setMessage("Такого токена не существует")
+                }
 
             } catch (e)
             {

@@ -29,7 +29,7 @@ export default function Auth() {
                     <span className="text">
                         Войти
                     </span>
-                    <img src="/assets/icons/auth.svg"/>
+                    <img src="/assets/icons/key.svg"/>
                 </div>
                 <Link to="/register" className="login-button" id="register">    
                     <span className="text">

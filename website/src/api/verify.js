@@ -10,9 +10,11 @@ export async function verifyJs(token)
         })
     })
 
+
+
     const data = await res.json()
 
-    if (!response.ok) {
+    if (!res.ok) {
         throw new Error(data.detail || "Ошибка")
     }
 

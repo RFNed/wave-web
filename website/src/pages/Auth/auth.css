@@ -64,6 +64,7 @@
     align-items: center;
     & img {
         margin-left: auto;
+        width: 30px;
     }
     transition: all 600ms ease-out;
     &:hover {

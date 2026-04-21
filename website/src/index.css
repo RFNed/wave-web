@@ -8,6 +8,11 @@
   src: url(/assets/fonts/SSFBreakthrough-Regular.ttf);
 }
 
+@font-face {
+  font-family: Oswald;
+  src: url("/assets/fonts/Oswald/Oswald-Regular.ttf");
+}
+
 :root {
   --background-day: #f0f0f0;
   --background-night: #1e1e1e;

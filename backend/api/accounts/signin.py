@@ -3,6 +3,9 @@ from pydantic import BaseModel
 from redis.asyncio import Redis
 from passlib.context import CryptContext
 from backend.dependecy import database
+from email.message import EmailMessage
+from config import SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER, WEBSITE_URL
+import aiosmtplib
 import uuid
 router = APIRouter()
 
@@ -16,7 +19,6 @@ async def register(data: RegisterModel, redis = Depends(database.get_redis), mys
     
     if (data.email == "" or data.nickname == "" or data.password == ""):
         return {"message": "Не все поля введены"}
-    
     
 
     async with mysql.acquire() as conn:
@@ -33,10 +35,34 @@ VALUES
 (%s, %s, %s, CURRENT_TIMESTAMP, NULL, NULL, NULL, '0', '0', '0')
                                  """, (data.nickname, data.email, password_hashed))
             
+
+
+
             token = uuid.uuid4().hex
-            redis.setex(
+            await redis.setex(
                 f"verify:{token}",
                 60 * 15,
-                {str(cursor.lastrowid)}
+                str(cursor.lastrowid)
             )
+            
+            message = EmailMessage()
+            message["From"] = SMTP_USER
+            message["To"] = data.email
+            message["Subject"] = "Подтверждение почты"
+
+            email_content = f"Перейдите по ссылке для подтверждения: {WEBSITE_URL}/verify?token={token}"
+            message.set_content(email_content)
+            try:
+                await aiosmtplib.send(
+                    message,
+                    hostname=SMTP_HOST,
+                    port=SMTP_PORT,
+                    username=SMTP_USER,
+                    password=SMTP_PASS,
+                    use_tls=(SMTP_PORT == 465),   # True for SSL
+                    start_tls=(SMTP_PORT == 587), # True for STARTTLS
+                )
+            except:
+                return {"message": "Ошибка с отправкой письма. Попробуйте ещё раз."}
+            
     return {"message": "Проверьте свою почту"}
