@@ -4,16 +4,6 @@ import './main.css';
 export default function App() {
     return (
         <>
-
-        <div className='headerbox'>
-            <Link to="/"><img src="/logo/wave.svg" alt="Logo" className='logo'/></Link>
-            <div className="right-board">
-            <Link to="/maps" className="buttons"><img src="/assets/icons/music.svg"/>Карты</Link>
-            <Link to="/records" className="buttons"><img src="/assets/icons/leaderboards.svg"/>Лидерборд</Link>
-            <Link to="/auth" className="buttons"><img src="/assets/icons/auth.svg"/>Войти</Link>
-            </div>
-        </div>
-
         <div className="content">
             <div className="content-head">
                 <h1 className='title'>Wave</h1>
