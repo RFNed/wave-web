@@ -29,7 +29,7 @@ export default function Auth() {
                     <img src="/assets/icons/auth.svg"/>
                 </Link>
                     <span id="result">
-
+                        
                     </span>
 
             </div>

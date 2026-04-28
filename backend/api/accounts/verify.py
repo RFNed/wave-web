@@ -20,7 +20,7 @@ async def verify(data: VerifyParams, response: Response, redis = Depends(databas
         await redis.delete(f"verify:{data.token}")
         async with mysql.acquire() as conn:
             async with conn.cursor() as cursor:
-                await cursor.execute("UPDATE `users` SET `isEnabled` = '1' WHERE `users`.`id` = %s", (value,))
+                await cursor.execute("UPDATE `users` SET `is_enabled` = '1' WHERE `users`.`id` = %s", (value,))
                 return {"status": 200}
     else:
         return {"status": 404}
