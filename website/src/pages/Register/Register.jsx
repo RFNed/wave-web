@@ -1,4 +1,4 @@
-import "./register.css"
+import "./Register.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react"
 import { registerUser } from "../../api/register"

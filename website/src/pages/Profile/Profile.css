@@ -1,0 +1,73 @@
+body {
+    height: 2000px;
+}
+.profile-box {
+    width: 90vw;
+    min-height: 1400px;
+    background-color: rgb(31, 31, 31);
+    margin-top: 50px;
+    border-radius: 20px;
+}
+
+.profile-header-banner img {
+    width: 90vw;
+    height: 250px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.player-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.profile-last-online {
+    margin-top: 9px;
+}
+
+.profile-nickname {
+    font-size: 28px;
+}
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 40px;
+    gap: 50px;
+    & img {
+        
+        width: 200px;
+        margin-left: 130px;
+        border-radius: 50px;
+    }
+}
+
+.description-header {
+    font-size: 28px;
+    border-bottom: 2px solid purple;
+    margin-left: 30px;
+    
+}
+
+.description-mysql {
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-description {
+    margin-left: auto;
+    margin-right: auto;
+    width: 85vw;
+    background-color: rgb(24, 24, 24);
+    min-height: 500px;
+    border-radius: 20px;
+    padding: 15px;
+    
+    
+}
