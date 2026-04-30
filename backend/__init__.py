@@ -1,9 +1,10 @@
 # backend/init.py
 from config import *
-import fastapi, bcrypt
+import fastapi
 from backend.api.accounts import signin
 from backend.api.accounts import verify
 from backend.api.accounts import auth
+from backend.api import profile
 from backend.api.stats import leaderboard
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -26,13 +27,15 @@ async def lifespan(app: fastapi.FastAPI):
     )
     yield
     app.state.mysql.close()
-    app.state.redis.close()
+    await app.state.redis.close()
 app = fastapi.FastAPI(lifespan=lifespan)
 
 
 app.mount("/assets/avatars", StaticFiles(directory="backend/assets/avatars"), name="avatars")
+app.mount("/assets/banners", StaticFiles(directory="backend/assets/banners"), name="banners")
 app.add_middleware(CORSMiddleware, allow_origins=REACT_URLS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(signin.router)
 app.include_router(verify.router)
 app.include_router(auth.router)
 app.include_router(leaderboard.router)
+app.include_router(profile.router)

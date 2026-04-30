@@ -1,4 +1,4 @@
-export function getAvatarUrl(path)
+export function getImageUrl(path)
 {
     if (path.startsWith("http://") || path.startsWith("https://"))
     {

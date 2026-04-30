@@ -1,7 +1,7 @@
 import "./LeaderBoard.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { getAvatarUrl } from "../../utils/getAvatar";
+import { getImageUrl } from "../../utils/getImage";
 
 export default function LeaderBoard()
 {
@@ -33,7 +33,7 @@ export default function LeaderBoard()
             <div className="lead-list">
                 {players.map(player => (
                 <div className="player" key={player.id}>
-                    <img src={getAvatarUrl(player.avatar)}/>
+                    <img src={getImageUrl(player.avatar)}/>
                     <Link to={`/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
                     <span className="leader-name">
                         {player.username}

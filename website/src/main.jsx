@@ -11,21 +11,24 @@ import Verify from './pages/Verification/Verify.jsx'
 import CheckEmail from './pages/Register/Check/Check.jsx'
 import LeaderBoard from './pages/LeaderBoard/LeaderBoard.jsx'
 import Profile from './pages/Profile/Profile.jsx'
+import { AuthProvider, useAuth } from './utils/authContext.jsx'
 import './index.css'
 
 function Header() {
+  const { user } = useAuth()
   return (
     <>
-    
-      <div className='headerbox'>
-          <Link to="/"><img src="/logo/wave.svg" alt="Logo" className='logo'/></Link>
-          <div className="right-board">
-          <Link to="/maps" className="buttons"><img src="/assets/icons/music.svg"/>Карты</Link>
-          <Link to="/leaderboard" className="buttons"><img src="/assets/icons/leaderboards.svg"/>Лидерборд</Link>
-          <Link to="/auth" className="buttons"><img src="/assets/icons/auth.svg"/>Войти</Link>
-          </div>
-      </div>
-    
+      <header>
+        <div className='headerbox'>
+              <Link to="/"><img src="/logo/wave.svg" alt="Logo" className='logo'/></Link>
+              <div className="right-board">
+              <Link to="/maps" className="buttons"><img src="/assets/icons/music.svg"/>Карты</Link>
+              <Link to="/leaderboard" className="buttons"><img src="/assets/icons/leaderboards.svg"/>Лидерборд</Link>
+              
+              {user ? (<span>123</span>) : (<Link to="/auth" className="buttons"><img src="/assets/icons/auth.svg"/>Войти</Link>)}
+            </div>
+        </div>
+    </header>
     </>
   )
 }
@@ -60,8 +63,10 @@ function AnimatedRoutesAnimation() {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Header />
-      <AnimatedRoutesAnimation />
+      <AuthProvider>
+          <Header />
+          <AnimatedRoutesAnimation />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

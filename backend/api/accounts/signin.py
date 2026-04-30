@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from passlib.context import CryptContext
-from backend.dependecy import database
+from backend.dependency import database
 from email.message import EmailMessage
 from config import SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER, WEBSITE_URL
 import aiosmtplib

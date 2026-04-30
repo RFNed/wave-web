@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from passlib.context import CryptContext
-from backend.dependecy import database
+from backend.dependency import database
 from asyncio import sleep
 from random import uniform
 router = APIRouter()
