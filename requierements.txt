@@ -1,0 +1,6 @@
+fastapi
+aiomysql
+redis
+bcrypt
+bcrypt[argon2]
+cryptography

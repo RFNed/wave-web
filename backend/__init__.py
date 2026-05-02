@@ -14,7 +14,7 @@ from fastapi.staticfiles import StaticFiles
 
 @asynccontextmanager
 async def lifespan(app: fastapi.FastAPI):
-    app.state.redis = Redis(host=REDIS_HOST, db=REDIS_DB, password=REDIS_PASS, port=REDIS_PORT)
+    app.state.redis = Redis(host=REDIS_HOST, db=REDIS_DB, password=REDIS_PASS, port=REDIS_PORT, decode_responses=True)
     app.state.mysql = await create_pool(
         minsize=1,
         maxsize=20,

@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
@@ -12,10 +12,12 @@ import CheckEmail from './pages/Register/Check/Check.jsx'
 import LeaderBoard from './pages/LeaderBoard/LeaderBoard.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import { AuthProvider, useAuth } from './utils/authContext.jsx'
+import { getSessionProfile } from './api/getSession.js'
 import './index.css'
+import { getImageUrl } from './utils/getImage.js'
 
 function Header() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   return (
     <>
       <header>
@@ -25,13 +27,23 @@ function Header() {
               <Link to="/maps" className="buttons"><img src="/assets/icons/music.svg"/>Карты</Link>
               <Link to="/leaderboard" className="buttons"><img src="/assets/icons/leaderboards.svg"/>Лидерборд</Link>
               
-              {user ? (<span>123</span>) : (<Link to="/auth" className="buttons"><img src="/assets/icons/auth.svg"/>Войти</Link>)}
+              {loading ? (
+                <div className="avatar-skeleton" />
+              ) : user ? (
+                <Link to={`/profile?id=${user.id}`}><img src={getImageUrl(user.avatar_url)} className='avatar-header-profile'/></Link>
+              ) : (
+                <Link to="/auth" className="buttons">
+  <img src="/assets/icons/auth.svg"/>
+  Войти
+</Link>
+              )}
             </div>
         </div>
-    </header>
+      </header>
     </>
   )
 }
+
 
 function AnimatedRoutesAnimation() {
   const location = useLocation()
@@ -60,13 +72,26 @@ function AnimatedRoutesAnimation() {
   )
 }
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-          <Header />
-          <AnimatedRoutesAnimation />
-      </AuthProvider>
-    </BrowserRouter>
-  </StrictMode>,
-)
+async function bootstrap()
+{
+  let user = null
+  try {
+    user = await getSessionProfile()
+    
+  } catch {
+    user = null
+  }
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <BrowserRouter>
+        <AuthProvider initialUser={user}>
+            <Header />
+            <AnimatedRoutesAnimation />
+        </AuthProvider>
+      </BrowserRouter>
+    </StrictMode>,
+  )
+
+}
+
+bootstrap()

@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
+from pydantic import BaseModel
 from backend.dependency import database
 router = APIRouter()
 
@@ -6,7 +7,7 @@ router = APIRouter()
 async def profile_get(id: int, mysql = Depends(database.get_mysql)):
     async with mysql.acquire() as conn:
         async with conn.cursor() as cursor:
-            await cursor.execute("select username, COALESCE(description, 'Пользователь ничего не оставил :(') as description, created_at, COALESCE(last_login, 'Никогда') as last_login, total_score, COALESCE(avatar_url, 'assets/avatars/no_avatar.png') as avatar_url, COALESCE(banner_url, 'assets/banners/no_banner.png') as banner_url, play_count, accuracy from users where is_enabled = 1 and id = %s", (id,))
+            await cursor.execute("select username, COALESCE(description, 'Пользователь ничего не оставил :(') as description, created_at, COALESCE(last_login, 'Никогда') as last_login, total_score, COALESCE(avatar_url, 'assets/avatars/no_avatar.png') as avatar_url, COALESCE(banner_url, 'assets/banners/no_banner.png') as banner_url, play_count, accuracy, id from users where is_enabled = 1 and id = %s", (id,))
             result = await cursor.fetchone()
             if not result:
                 raise HTTPException(status.HTTP_404_NOT_FOUND, detail="Player not found! :(")
@@ -20,5 +21,18 @@ async def profile_get(id: int, mysql = Depends(database.get_mysql)):
                     "avatar_url": result[5],
                     "banner_url": result[6],
                     "play_count": result[7],
-                    "accuracy": result[8]
+                    "accuracy": result[8],
+                    "id": result[9]
                 }
+
+class MeSettings(BaseModel):
+    session: str
+
+@router.get("/me")
+async def me(request: Request, redis = Depends(database.get_redis)):
+    session_id = request.cookies.get("session_id")
+    value = await redis.get(f"session:{session_id}")
+    if value:
+        return {"profile_id": str(value)}
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not Auth")

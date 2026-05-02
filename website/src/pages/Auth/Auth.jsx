@@ -3,13 +3,20 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { toAuth } from "../../api/auth"
 import { useAuth } from "../../utils/authContext.jsx"
+
+import { getSessionProfile } from "../../api/getSession.js"
 export default function Auth() {
 
     const [notifyText, setNotify] = useState("")
     const [nickname, setNickname] = useState("")
     const [password, setPassword] = useState("")
-    const { setUser } = useAuth()
+    const { setUser, user, loading } = useAuth()
     const navigate = useNavigate()
+    useEffect(() => {
+        if (!loading && user) {
+            navigate(`/profile?id=${user.id}`)
+        }
+    }, [user, loading])
     useEffect(() => {
         setNotify("")
     }, [nickname, password])
@@ -26,7 +33,9 @@ export default function Auth() {
         if (data.result == "granted")
         {
             setNotify("OK!")
-            setUser({user_id: data.id})
+            const me = await getSessionProfile()
+            setUser(me)
+            navigate("/")
         } else if (data.result == "wrong") {
             setNotify("Неправильный пароль")
         } else if (data.result == "not exist") {

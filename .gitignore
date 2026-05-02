@@ -21,5 +21,4 @@ logs
 **/*.njsproj
 **/*.sln
 **/*.sw?
-config.py
 **/.env
