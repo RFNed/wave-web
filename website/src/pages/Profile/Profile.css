@@ -2,11 +2,21 @@ body {
     height: 2000px;
 }
 .profile-box {
-    width: 95%;
+    width: auto;
     min-height: 1400px;
     background-color: rgb(31, 31, 31);
     margin-top: 50px;
     border-radius: 20px;
+}
+
+.options-button {
+    background-color: black;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-left: 30px;
 }
 
 .profile-header-banner img {
@@ -38,7 +48,7 @@ body {
     position: relative;
     bottom: 40px;
     gap: 50px;
-    padding: 0 150px;
+    padding: 0 120px;
 }
 
 .avatar {

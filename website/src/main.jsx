@@ -15,6 +15,7 @@ import { AuthProvider, useAuth } from './utils/authContext.jsx'
 import { getSessionProfile } from './api/getSession.js'
 import './index.css'
 import { getImageUrl } from './utils/getImage.js'
+import Settings from './pages/Profile/Settings/Settings.jsx'
 
 function Header() {
   const { user, loading } = useAuth()
@@ -66,6 +67,7 @@ function AnimatedRoutesAnimation() {
         <Route path="/verify" element={<Verify />} />
         <Route path="/register/check" element={<CheckEmail />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/settings" element={<Settings />} />
       </Routes>
       </motion.div>
     </AnimatePresence>

@@ -7,7 +7,7 @@ router = APIRouter()
 async def profile_get(id: int, mysql = Depends(database.get_mysql)):
     async with mysql.acquire() as conn:
         async with conn.cursor() as cursor:
-            await cursor.execute("select username, COALESCE(description, 'Пользователь ничего не оставил :(') as description, created_at, COALESCE(last_login, 'Никогда') as last_login, total_score, COALESCE(avatar_url, 'assets/avatars/no_avatar.png') as avatar_url, COALESCE(banner_url, 'assets/banners/no_banner.png') as banner_url, play_count, accuracy, id from users where is_enabled = 1 and id = %s", (id,))
+            await cursor.execute("select username, COALESCE(description, 'Пользователь ничего не оставил :(') as description, created_at, COALESCE(last_login, 'Никогда') as last_login, total_score, COALESCE(avatar_url, 'assets/avatars/no_avatars.png') as avatar_url, COALESCE(banner_url, 'assets/banners/no_banners.png') as banner_url, play_count, accuracy, id from users where is_enabled = 1 and id = %s", (id,))
             result = await cursor.fetchone()
             if not result:
                 raise HTTPException(status.HTTP_404_NOT_FOUND, detail="Player not found! :(")

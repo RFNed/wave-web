@@ -2,14 +2,18 @@ import "./Profile.css"
 import { getProfile } from "../../utils/getProfile"
 import { getImageUrl } from "../../utils/getImage"
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useAuth } from "../../utils/authContext"
+
 export default function Profile() {
+    const { user } = useAuth()
     const [isLoadedAvatar, setAvatarBool] = useState(false)
     const [isLoadedBanner, setBannerBool] = useState(false)
     const [url_banner, setBanner] = useState("")
     const [url_avatar, setAvatar] = useState("")
     const [nickname, setNickname] = useState("")
     const [description, setDescription] = useState("")
+    const [optionButton, setOptionButton] = useState(false)
     useEffect(() => {
         const getProfileVar = async () => {
             try {
@@ -20,7 +24,10 @@ export default function Profile() {
                 setAvatar(getImageUrl(data.avatar_url))
                 setNickname(`${data.username}`)
                 setDescription(`${data.description}`)
-
+                if (user && user.id == data.id)
+                {
+                    setOptionButton(true)
+                }
             } catch (e) {
                 console.log(e)
             }
@@ -48,6 +55,9 @@ export default function Profile() {
                     <span className="profile-registered">Дата регистрации: август 2017</span>
                     <span className="profile-last-online">В сети</span>
                 </div>
+                {optionButton && (<Link to="settings" style={{textDecoration: "none", color: "white"}}><div className="options-button">
+                    Настройки
+                </div></Link>)}
             </div>
 
             
