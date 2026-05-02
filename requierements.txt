@@ -2,5 +2,8 @@ fastapi
 aiomysql
 redis
 bcrypt
-bcrypt[argon2]
+passlib[argon2]
 cryptography
+uvicorn
+gunicorn
+aiosmtplib
