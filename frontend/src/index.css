@@ -30,6 +30,10 @@
     transition: all 300ms ease;
     scale: 1.1;
   }
+  &:active {
+    transition: all 100ms ease;
+    scale: 0.9
+  }
 }
 
 .avatar-skeleton {

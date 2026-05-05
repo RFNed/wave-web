@@ -19,6 +19,9 @@ import Settings from './pages/Profile/Settings/Settings.jsx'
 
 function Header() {
   const { user, loading } = useAuth()
+  const location = useLocation()
+  const canTouchMy = 
+    location.pathname === "/profile" && !location.search
   return (
     <>
       <header>
@@ -31,7 +34,9 @@ function Header() {
               {loading ? (
                 <div className="avatar-skeleton" />
               ) : user ? (
-                <Link to={`/profile?id=${user.id}`}><img src={getImageUrl(user.avatar_url)} className='avatar-header-profile'/></Link>
+                canTouchMy ? (
+                <img src={getImageUrl(user.avatar_url)} onClick={() => window.scrollTo({top: "0", behavior: "smooth"})} className='avatar-header-profile'/>
+                ) : (<Link to={`/profile`}><img src={getImageUrl(user.avatar_url)} className='avatar-header-profile'/></Link>)
               ) : (
                 <Link to="/auth" className="buttons">
   <img src="/assets/icons/auth.svg"/>
@@ -52,7 +57,7 @@ function AnimatedRoutesAnimation() {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={location.pathname}
+        key={location.pathname + location.search}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0}}
         exit={{ opacity: 0, y: -14 }}
@@ -77,12 +82,6 @@ function AnimatedRoutesAnimation() {
 async function bootstrap()
 {
   let user = null
-  try {
-    user = await getSessionProfile()
-    
-  } catch {
-    user = null
-  }
   createRoot(document.getElementById('root')).render(
     <StrictMode>
       <BrowserRouter>

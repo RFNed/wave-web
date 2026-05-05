@@ -8,6 +8,14 @@ export default function Settings() {
     const [URLAvatar, setURLAvatar] = useState("")
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState("")
+    const [notify, setNotify] = useState(`${`  `}`)
+
+    function onSendAvatar()
+    {
+        alert("готово!")
+        return;
+    }
+
 
     useEffect(() => {
         if (user?.avatar_url) {
@@ -50,12 +58,13 @@ export default function Settings() {
             <div className="settings-constructor">
                 <div className="avatar-editor">
                     <div className="header-avatar-editor">
-                        <img src={`${preview}`} />
+                        <img src={`${preview}`} style={{marginBottom: "70px"}}/>
                         <div className="avatar-editor-list-option">
                             <span>Поменяйте свою аватарку!</span>
                             <input type="url" value={`${URLAvatar}`} onChange={handleUrlChange} maxLength={"100"} placeholder="Вставьте прямую ссылку на картинку" id="url-avatar"></input>
                             <span style={{fontSize: "14px", paddingTop: "4px", opacity: "0.2"}}>или</span>
                             <input type="file" onChange={handleFileChange} accept="image/png, image/jpeg" id="file-avatar"/>
+                            <div className="on-send-avatar" onClick={onSendAvatar}>Применить</div>
                         </div>
                     </div>
                 </div>

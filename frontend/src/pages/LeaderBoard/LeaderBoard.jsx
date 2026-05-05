@@ -2,9 +2,11 @@ import "./LeaderBoard.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { getImageUrl } from "../../utils/getImage";
+import { useAuth } from "../../utils/authContext";
 
 export default function LeaderBoard()
 {
+    const { user } = useAuth()
 
     const [players, setPlayers] = useState([]);
 
@@ -34,7 +36,7 @@ export default function LeaderBoard()
                 {players.map(player => (
                 <div className="player" key={player.id}>
                     <img src={getImageUrl(player.avatar)}/>
-                    <Link to={`/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
+                    <Link to={player.id === user?.id ? `/profile` : `/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
                     <span className="leader-name">
                         {player.username}
                     </span>
