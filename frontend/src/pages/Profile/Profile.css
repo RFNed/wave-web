@@ -52,7 +52,7 @@ body {
 }
 
 .avatar {
-    height: 240px;
+    height: 200px;
     width: 200px;
     border-radius: 50px;
     object-fit: cover;

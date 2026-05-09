@@ -26,6 +26,7 @@
   display: block;
   transition: all 250ms ease;
   scale: 1.0;
+  object-fit: cover;
   &:hover {
     transition: all 300ms ease;
     scale: 1.1;
