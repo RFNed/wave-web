@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./Settings.css"
 import { useAuth } from "../../../utils/authContext"
 import { getImageUrl } from "../../../utils/getImage"
+import { changeAvatar } from "./utils/changeAvatar"
 
 export default function Settings() {
     const { user } = useAuth()
@@ -12,7 +13,19 @@ export default function Settings() {
 
     function onSendAvatar()
     {
-        alert("готово!")
+        if (!URLAvatar && !file)
+        {
+            alert("Вставьте в поле ссылку или выберите файл!")
+        }
+
+        if (URLAvatar && !file)
+        {
+            const url_switcher = async() => {
+                await changeAvatar(true, URLAvatar)
+            }
+            url_switcher()
+        }
+
         return;
     }
 

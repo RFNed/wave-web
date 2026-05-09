@@ -14,7 +14,7 @@ export default function Auth() {
     const navigate = useNavigate()
     useEffect(() => {
         if (!loading && user) {
-            navigate(`/profile?id=${user.id}`)
+            navigate(`/profile`)
         }
     }, [user, loading])
     useEffect(() => {
