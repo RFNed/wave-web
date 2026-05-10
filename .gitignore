@@ -7,6 +7,9 @@ logs
 **/pnpm-debug.log*
 **/lerna-debug.log*
 
+**/assets/avatars
+**/assets/banners
+
 **/node_modules
 **/dist
 **/dist-ssr

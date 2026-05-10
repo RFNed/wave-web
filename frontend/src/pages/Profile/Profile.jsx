@@ -61,8 +61,6 @@ export default function Profile() {
                     <span className="profile-nickname">
                         {nickname}
                     </span>
-                    <span className="profile-registered">Дата регистрации: август 2017</span>
-                    <span className="profile-last-online">В сети</span>
                 </div>
                 {optionButton && (<Link to="settings" style={{textDecoration: "none", color: "white"}}><div className="options-button">
                     Настройки

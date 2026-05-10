@@ -14,7 +14,24 @@ export async function changeAvatar(isURL, argument)
         })
         if (res.ok)
         {
-            return true
+            return res.json()
+        }
+        else {
+            return false
+        }
+    } else if (!isURL)
+    {
+        const formData = new FormData()
+
+        formData.append("avatar", argument)
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/profile/changeAvatar/file`, {
+            method: "POST",
+            credentials: "include",
+            body: formData
+        })
+        if (res.ok)
+        {
+            return res.json()
         }
         else {
             return false
