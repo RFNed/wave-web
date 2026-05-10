@@ -7,3 +7,4 @@ cryptography
 uvicorn
 gunicorn
 aiosmtplib
+python-multipart

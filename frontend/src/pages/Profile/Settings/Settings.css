@@ -19,6 +19,7 @@
     }
 }
 
+notify-message-settings-banner,
 .notify-message-settings-avatar {
     position: absolute;
     bottom: -40px;
@@ -40,7 +41,10 @@
     margin-left: 160px;
     font-size: 48px;
 }
-
+.settings-head-avatar-banner {
+    display: flex;
+    gap: 50px;
+}
 .settings-constructor {
     margin-top: 20px;
     width: auto;
@@ -48,6 +52,14 @@
     border-radius: 20px;
     height: 800px;
     padding: 24px;
+    position: relative;
+}
+
+.attention-text-image {
+    margin-left: 50px;
+    font-size: 14px;
+    opacity: 0.2;
+    position: absolute;
 }
 
 .avatar-editor img {
@@ -58,6 +70,17 @@
     border-radius: 20px;
 }
 
+.banner-editor {
+    margin-left: auto;
+    & img {
+        width: 374px;
+        height: 154px;
+        object-fit: cover;
+        margin-left: 50px;
+        border-radius: 20px;
+    }
+}
+
 .avatar-editor-list-option {
     flex-direction: column;
     flex-wrap: wrap;
@@ -65,8 +88,9 @@
     position: relative;
 }
 
+.header-banner-editor,
 .header-avatar-editor {
-    
+    padding: 50px;
     align-items: center;
     display: flex;
     gap: 30px;
@@ -86,3 +110,4 @@
         margin-top: 10px;
     }
 }
+
