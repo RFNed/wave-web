@@ -50,12 +50,12 @@ export default function Profile() {
         <div className="profile-box">
 
             <div className="profile-header-banner">
-                <img src={url_banner} onLoad={() => setBannerBool(true)} />
+                <img src={url_banner || undefined} onLoad={() => setBannerBool(true)} />
             </div>
 
             <div className="profile-avatar">
                 <div className="profile-avatar-wrapper" style={{display: "flex"}}>
-                    <img src={url_avatar} onLoad={() => setAvatarBool(true)} className={`avatar ${isLoadedAvatar ? "loaded" : ""}`}/>
+                    <img src={url_avatar || undefined} onLoad={() => setAvatarBool(true)} className={`avatar ${isLoadedAvatar ? "loaded" : ""}`}/>
                 </div>
                 <div className="player-info">
                     <span className="profile-nickname">
