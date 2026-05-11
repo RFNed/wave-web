@@ -56,7 +56,7 @@ export default function Auth() {
                     <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} maxLength={15} id="login" placeholder="никнейм"></input>
                 </div>
                 <div className="field">
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} maxLength={15} id="login" placeholder="пароль"></input>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} maxLength={45} id="login" placeholder="пароль"></input>
                 </div>
                 <div className="login-button" onClick={toLogin}>    
                     <span className="text">

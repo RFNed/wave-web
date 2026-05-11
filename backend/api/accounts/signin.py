@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from passlib.context import CryptContext
@@ -23,18 +23,16 @@ async def register(data: RegisterModel, redis = Depends(database.get_redis), mys
 
     async with mysql.acquire() as conn:
         async with conn.cursor() as cursor:
-            await cursor.execute("select * from users where email = %s or username = %s", (data.email, data.nickname,))
-            result = await cursor.fetchone()
-            if result:
-                return {"status": "failed", "message": "Почта или никнейм уже занят"}
-            password_hashed = CryptContext(schemes=["argon2"], deprecated="auto").hash(data.password) 
-            await cursor.execute("""
+            password_hashed = CryptContext(schemes=["argon2"], deprecated="auto").hash(data.password)
+            try:
+                await cursor.execute("""
 INSERT INTO `users` 
 (`username`, `email`, `password_hash`, `created_at`, `last_login`, `country`, `avatar_url`, `total_score`, `accuracy`, `play_count`) 
 VALUES 
 (%s, %s, %s, CURRENT_TIMESTAMP, NULL, NULL, NULL, '0', '0', '0')
                                  """, (data.nickname, data.email, password_hashed))
-            
+            except Exception as e:
+                raise HTTPException(status_code=400, detail="Пользователь с таким email уже существует")
 
 
 
@@ -56,13 +54,13 @@ VALUES
                 await aiosmtplib.send(
                     message,
                     hostname=SMTP_HOST,
-                    port=SMTP_PORT,
+                    port=465,
                     username=SMTP_USER,
                     password=SMTP_PASS,
-                    use_tls=(SMTP_PORT == 465),   # True for SSL
-                    start_tls=(SMTP_PORT == 587), # True for STARTTLS
+                    use_tls=True,
                 )
-            except:
-                return {"message": "Ошибка с отправкой письма. Попробуйте ещё раз."}
+            except Exception as e:
+                print(e)
+                raise HTTPException(status_code=500, detail="Ошибка при отправке письма. Попробуйте позже.")
             
-    return {"message": "Проверьте свою почту"}
+            return {"message": "Проверьте свою почту"}

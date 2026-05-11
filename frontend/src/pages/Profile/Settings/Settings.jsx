@@ -168,7 +168,7 @@ export default function Settings() {
             <span className="settings-title">Настройки</span>
             <div className="settings-constructor">
                 <div className="settings-head-avatar-banner">
-                    <span className="attention-text-image">* Изображение должны быть формата JPG/JPEG и быть не более 2 МБ!</span>
+                    <span className="attention-text-image">* Загружаемое напрямую изображение должен быть формата JPG/JPEG и быть не более 2 МБ!</span>
                     <div className="avatar-editor">
                         <div className="header-avatar-editor">
                             <img src={`${preview}`} style={{marginBottom: "70px"}}/>
@@ -196,7 +196,6 @@ export default function Settings() {
                         </div>
                     </div>
                 </div>
-                12333
             </div>
         </div>
         
