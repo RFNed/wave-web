@@ -34,17 +34,19 @@ export default function LeaderBoard()
 
             <div className="lead-list">
                 {players.map(player => (
-                <div className="player" key={player.id}>
-                    <img src={getImageUrl(player.avatar)}/>
-                    <Link to={player.id === user?.id ? `/profile` : `/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
-                    <span className="leader-name">
-                        {player.username}
-                    </span>
-                    </Link>
-                    <span className="leader-value">
-                        {player.score_value}
-                    </span>
-                </div>
+                <Link to={player.id === user?.id ? `/profile` : `/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
+                    <div className="player" key={player.id}>
+                        <img src={getImageUrl(player.avatar)}/>
+                        
+                        <span className="leader-name">
+                            {player.username}
+                        </span>
+                        
+                        <span className="leader-value">
+                            {player.score_value}
+                        </span>
+                    </div>
+                </Link>
                 ))}
 
 
