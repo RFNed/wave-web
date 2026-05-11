@@ -54,7 +54,7 @@ async def change_avatar_file(request: Request, mysql = Depends(database.get_mysq
 
     filename = f"{uuid.uuid4()}.jpg"
 
-    filepath = os.path.join(f"backend\\assets\\avatars\\{value}", filename)
+    filepath = os.path.join("backend", "assets", "avatars", f"{value}", filename)
 
     with open(filepath, "wb") as f:
         f.write(content)
@@ -111,7 +111,7 @@ async def change_avatar_file(request: Request, mysql = Depends(database.get_mysq
 
     filename = f"{uuid.uuid4()}.jpg"
 
-    filepath = os.path.join(f"backend\\assets\\banners\\{value}", filename)
+    filepath = os.path.join("backend", "assets", "banners", f"{value}", filename)
 
     with open(filepath, "wb") as f:
         f.write(content)
