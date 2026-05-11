@@ -34,8 +34,8 @@
 }
 
 .player {
-    display: inline-flex;
-    width: 95%;
+    display: flex;
+    width: 100%;
     gap: 30px;
     height: 60px;
     align-items: center;
@@ -55,6 +55,13 @@
         width: 60px;
         height: 60px;
     }
+}
+
+.leader-link {
+    display: block;
+    width: 1400px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .lead-list {

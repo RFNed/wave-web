@@ -34,7 +34,7 @@ export default function LeaderBoard()
 
             <div className="lead-list">
                 {players.map(player => (
-                <Link to={player.id === user?.id ? `/profile` : `/profile?id=${player.id}`} style={{ textDecoration: "none" }}>
+                <Link to={player.id === user?.id ? `/profile` : `/profile?id=${player.id}`} className="leader-link">
                     <div className="player" key={player.id}>
                         <img src={getImageUrl(player.avatar)}/>
                         
