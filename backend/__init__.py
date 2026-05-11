@@ -14,6 +14,8 @@ from redis.asyncio import Redis
 from aiomysql import create_pool
 from fastapi.staticfiles import StaticFiles
 
+
+
 @asynccontextmanager
 async def lifespan(app: fastapi.FastAPI):
     app.state.redis = Redis(host=REDIS_HOST, db=REDIS_DB, password=REDIS_PASS, port=REDIS_PORT, decode_responses=True)
@@ -25,17 +27,18 @@ async def lifespan(app: fastapi.FastAPI):
         host=MYSQL_HOST,
         db=MYSQL_DB,
         password=MYSQL_PASS,
-        autocommit=True
+        autocommit=True,
+        charset="utf8mb4"
     )
     yield
     app.state.mysql.close()
     await app.state.redis.close()
 app = fastapi.FastAPI(lifespan=lifespan)
+app.add_middleware(CORSMiddleware, allow_origins=REACT_URLS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 
 app.mount("/assets/avatars", StaticFiles(directory="backend/assets/avatars"), name="avatars")
 app.mount("/assets/banners", StaticFiles(directory="backend/assets/banners"), name="banners")
-app.add_middleware(CORSMiddleware, allow_origins=REACT_URLS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(signin.router)
 app.include_router(verify.router)
 app.include_router(auth.router)

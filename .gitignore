@@ -9,7 +9,7 @@ logs
 
 **/assets/avatars
 **/assets/banners
-
+**/venv
 **/node_modules
 **/dist
 **/dist-ssr

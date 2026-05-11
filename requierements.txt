@@ -8,3 +8,5 @@ uvicorn
 gunicorn
 aiosmtplib
 python-multipart
+dotenv
+pillow
