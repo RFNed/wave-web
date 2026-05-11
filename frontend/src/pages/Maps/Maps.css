@@ -1,0 +1,42 @@
+.map-content {
+    width: auto;
+    min-height: 1400px;
+    background-color: rgb(31, 31, 31);
+    margin-top: 50px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.map-search-container {
+    position: relative;
+    display: flex;
+    & .map-search-input {
+        flex: 1;
+        width: auto;
+        padding: 15px;
+        border: 2px solid white;
+        background-color: rgb(31,31,31);
+        color: white;
+        font-size: 20px;
+        border-radius: 20px;
+    }
+    & .map-search-button {
+        position: absolute;
+        top: 0;
+        background-color: transparent;
+        color: white;
+        border: none;
+        bottom: 0;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        transition: transform 200ms ease-in-out;
+
+        &:hover {
+            transform: scale(1.5);
+        }
+        &:active {
+            transform: scale(0.6);
+        }
+    }
+}
