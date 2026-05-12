@@ -195,7 +195,14 @@ export default function Settings() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
+                <div className="settings-description-editor-container">
+                    <span id="set-desc-title">Расскажите о себе!</span>
+                    <textarea id="set-desc-area"></textarea>
+                </div>
+
             </div>
         </div>
         

@@ -8,7 +8,7 @@ export default function App() {
             <div className="content-head">
                 <h1 className='title'>Wave</h1>
                 <span className='desc'>Новая ритм игра - с уникальным геймплеем и красивой графикой!</span>
-                <Link to="/maps" className='download'>Windows x64</Link>
+                <Link to="/download" className='download'>Windows x64</Link>
                 <div className="totto" title="Mascot Totto"></div>
             </div>
         </div>
