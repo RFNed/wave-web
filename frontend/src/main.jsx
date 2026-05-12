@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import App from "./pages/Main/Main.jsx"
 import Maps from "./pages/Maps/Maps.jsx"
+import Download from "./pages/Download/Download.jsx"
 import Auth from "./pages/Auth/Auth.jsx"
 import Register from "./pages/Register/Register.jsx"
 import Verify from './pages/Verification/Verify.jsx'
@@ -73,6 +74,7 @@ function AnimatedRoutesAnimation() {
         <Route path="/register/check" element={<CheckEmail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/settings" element={<Settings />} />
+        <Route path="/download" element={<Download />} />
       </Routes>
       </motion.div>
     </AnimatePresence>
