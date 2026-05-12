@@ -35,7 +35,6 @@ export default function Profile() {
                     setNickname(`${user.username}`)
                     setDescription(`${user.description}`)
                     setOptionButton(true)
-                    console.log(user)
                 }
             } catch (e) {
                 console.log(e)
@@ -62,7 +61,8 @@ export default function Profile() {
                         {nickname}
                     </span>
                 </div>
-                {optionButton && (<Link to="settings" style={{textDecoration: "none", color: "white"}}><div className="options-button">
+                {optionButton && (<Link to="settings" style={{textDecoration: "none", color: "white"}}>
+                <div className="options-button" onClick={() => window.scrollTo({top: "0", behavior: "smooth"})}>
                     Настройки
                 </div></Link>)}
             </div>
