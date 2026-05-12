@@ -1,4 +1,24 @@
-
+.settings-description-editor-container {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    & #set-desc-title {
+        margin-left: 35px;
+        font-size: 24px;
+    }
+    & #set-desc-area {
+        margin-top: 20px;
+        width: 100%;
+        height: 300px;
+        resize: none;
+        background-color: rgb(31,31,31);
+        border: 3px solid white;
+        padding: 10px;
+        border-radius: 20px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
 .on-send-avatar {
     margin-top: 20px;
     text-align: center;
@@ -50,7 +70,7 @@ notify-message-settings-banner,
     width: auto;
     background-color: rgb(19, 19, 19);
     border-radius: 20px;
-    height: 800px;
+    height: 1200px;
     padding: 24px;
     position: relative;
 }
