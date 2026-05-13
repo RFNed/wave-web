@@ -16,20 +16,23 @@ export default function Profile() {
     const [optionButton, setOptionButton] = useState(false)
     const [searchParams] = useSearchParams()
     const id = searchParams.get("id")
-
+    const navigate = useNavigate()
     useEffect(() => {
         const getProfileVar = async () => {
             try {
                 
                 if (id) {
                     const data = await getProfile(id)
+                    if (user.id == id) {
+                        navigate("/profile")
+                    }
                     setBanner(getImageUrl(data.banner_url))
                     setAvatar(getImageUrl(data.avatar_url))
                     setNickname(`${data.username}`)
                     setDescription(`${data.description}`)
                 }
                 else {
-                    if (!user) return
+                    if (!user) navigate("/auth")
                     setBanner(getImageUrl(user.banner_url))
                     setAvatar(getImageUrl(user.avatar_url))
                     setNickname(`${user.username}`)
