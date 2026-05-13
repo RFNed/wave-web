@@ -13,6 +13,7 @@ class AuthModel(BaseModel):
     nickname: str
     password: str
 
+
 @router.post("/auth")
 async def auth(data: AuthModel, response: Response, redis = Depends(database.get_redis), mysql = Depends(database.get_mysql)):
     async with mysql.acquire() as conn:
@@ -28,7 +29,7 @@ async def auth(data: AuthModel, response: Response, redis = Depends(database.get
 
                     response.set_cookie(key="session_id", value=session_id,httponly=True,samesite="lax",secure=False)
 
-                    return {"result": "granted", "id": result[0]}
+                    return {"result": "granted", "id": result[0], "session_id": session_id}
                 else:
                     return {"result": "wrong"}
             else:

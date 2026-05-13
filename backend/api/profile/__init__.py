@@ -28,6 +28,15 @@ async def profile_get(id: int, mysql = Depends(database.get_mysql)):
 class MeSettings(BaseModel):
     session: str
 
+@router.post("/megame")
+async def me_set(data: MeSettings, request: Request, redis = Depends(database.get_redis), mysql = Depends(database.get_mysql)):
+    session = data.session
+    value = await redis.get(f"session:{session}")
+    if value:
+        return {"profile_id": str(value)}
+    else:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not Auth")
+
 @router.get("/me")
 async def me(request: Request, redis = Depends(database.get_redis)):
     session_id = request.cookies.get("session_id")
