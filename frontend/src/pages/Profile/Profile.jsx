@@ -23,7 +23,7 @@ export default function Profile() {
                 
                 if (id) {
                     const data = await getProfile(id)
-                    if (user.id == id) {
+                    if (user?.id == id) {
                         navigate("/profile")
                     }
                     setBanner(getImageUrl(data.banner_url))

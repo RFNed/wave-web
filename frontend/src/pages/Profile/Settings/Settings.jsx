@@ -174,7 +174,7 @@ export default function Settings() {
                             <img src={`${preview}`} style={{marginBottom: "70px"}}/>
                             <div className="avatar-editor-list-option">
                                 <span>Поменяйте свою аватарку!</span>
-                                <input type="url" value={`${URLAvatar}`} onChange={handleUrlChange} maxLength={"100"} placeholder="Вставьте прямую ссылку на картинку" id="url-avatar"></input>
+                                <input type="url" value={`${URLAvatar}`} onChange={handleUrlChange} maxLength={"200"} placeholder="Вставьте прямую ссылку на картинку" id="url-avatar"></input>
                                 <span style={{fontSize: "14px", paddingTop: "4px", opacity: "0.2"}}>или</span>
                                 <input type="file" onChange={handleFileChange} accept="image/jpeg" id="file-avatar"/>
                                 <div className="on-send-avatar" onClick={onSendAvatar}>Применить</div>
@@ -187,7 +187,7 @@ export default function Settings() {
                             <img src={`${previewbanner}`} style={{marginBottom: "70px"}}/>
                             <div className="avatar-editor-list-option">
                                 <span>Поменяйте свой баннер!</span>
-                                <input type="url" value={`${bannerURL}`} onChange={handleUrlChangeBanner} maxLength={"100"} placeholder="Вставьте прямую ссылку на картинку" id="url-avatar"></input>
+                                <input type="url" value={`${bannerURL}`} onChange={handleUrlChangeBanner} maxLength={"200"} placeholder="Вставьте прямую ссылку на картинку" id="url-avatar"></input>
                                 <span style={{fontSize: "14px", paddingTop: "4px", opacity: "0.2"}}>или</span>
                                 <input type="file" onChange={handleFileChangeBanner} accept="image/jpeg" id="file-avatar"/>
                                 <div className="on-send-avatar" onClick={onSendBanner}>Применить</div>
