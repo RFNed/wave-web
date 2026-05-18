@@ -2,7 +2,8 @@ import "./Profile.css"
 import { getProfile } from "../../utils/getProfile"
 import { getImageUrl } from "../../utils/getImage"
 import { Link, useSearchParams, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { Helmet } from "react-helmet-async"
 import { useAuth } from "../../utils/authContext"
 
 export default function Profile() {
@@ -48,6 +49,10 @@ export default function Profile() {
 
     return (
         <>
+
+        <Helmet>
+            <title>{nickname}</title>
+        </Helmet>
 
         <div className="profile-box">
 

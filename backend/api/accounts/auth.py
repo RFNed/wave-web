@@ -1,11 +1,7 @@
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
-from redis.asyncio import Redis
 from passlib.context import CryptContext
 from backend.dependency import database
-from email.message import EmailMessage
-from config import SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER, WEBSITE_URL
-import aiosmtplib
 import uuid
 router = APIRouter()
 

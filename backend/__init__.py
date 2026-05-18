@@ -6,6 +6,7 @@ from backend.api.accounts import verify
 from backend.api.accounts import auth
 from backend.api import profile
 from backend.api import ping
+from backend.api import maps
 from backend.api.profile import settings
 from backend.api.stats import leaderboard
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,3 +47,4 @@ app.include_router(leaderboard.router)
 app.include_router(profile.router)
 app.include_router(settings.router)
 app.include_router(ping.router)
+app.include_router(maps.router)

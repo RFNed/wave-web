@@ -13,7 +13,7 @@ import CheckEmail from './pages/Register/Check/Check.jsx'
 import LeaderBoard from './pages/LeaderBoard/LeaderBoard.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import { AuthProvider, useAuth } from './utils/authContext.jsx'
-import { getSessionProfile } from './api/getSession.js'
+import { HelmetProvider, Helmet } from "react-helmet-async"
 import './index.css'
 import { getImageUrl } from './utils/getImage.js'
 import Settings from './pages/Profile/Settings/Settings.jsx'
@@ -64,6 +64,7 @@ function AnimatedRoutesAnimation() {
         exit={{ opacity: 0, y: -14 }}
         transition={{ duration: 0.2 }}
       >
+      <Helmet defaultTitle="Wave" />
       <Routes location={location}>
         <Route path="/auth" element={<Auth />}/>
         <Route path="/maps" element={<Maps />}/>
@@ -89,7 +90,9 @@ async function bootstrap()
       <BrowserRouter>
         <AuthProvider initialUser={user}>
             <Header />
-            <AnimatedRoutesAnimation />
+            <HelmetProvider>
+              <AnimatedRoutesAnimation />
+            </HelmetProvider>
         </AuthProvider>
       </BrowserRouter>
     </StrictMode>,
